@@ -29,31 +29,21 @@
     </aside>
     <section class="offset-3 col-9 px-4">
       <header class="mb-3">
-        <h1>Problemas Registrados</h1>
+        <h1>Novo Problema</h1>
       </header>
-      <div class="row">
-        <div class="col-8 mb-3 px-4">
-          <div class="input-group">
-            <input type="text"
-              class="form-control"
-              placeholder="Pesquisar por título ou descrição"
-              id="search-input"
-            >
-            <button class="btn btn-outline-primary"
-              type="button"
-              id="search-button"
-            >
-              Pesquisar
-            </button>
-          </div>
+      <form>
+        <div class="mb-3">
+          <label for="problem-title" class="form-label">
+            Título do Problema
+          </label>
+          <input type="text" class="form-control" id="problem[title]"
+            placeholder="Descreva o título do problema"
+          >
+          <button type="submit" class="btn btn-primary mt-3">
+            Registrar Problema
+          </button>
         </div>
-        <div class="col-4">
-          <a href="/pages/problems/new.php">
-            <i class="fe fe-plus"></i>
-            Registrar Novo Problema
-          </a>
-        </div>
-      </div>
+      </form>
     </section>
   </main>
 </html>
