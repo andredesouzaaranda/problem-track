@@ -17,16 +17,33 @@
 
 <table class="table">
   <thead>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Ações</th>
+    <th class="p-2">ID</th>
+    <th class="p-2">Título</th>
+    <th class="p-2">Ações</th>
   </thead>
+
+  <div class="d-flex justify-content-center m-5">
+    <div class="col-sm-4 alert alert-info text-center">
+      Não foram encontrados registros!
+    </div>
+  </div>
+
   <tbody>
     <?php foreach ($problems as $index => $problem): ?>
       <tr>
-        <td><a href="/pages/problems/show.php?id=<?= $index ?>">#<?= $index ?></a></td>
-        <td><?= $problem ?></td>
-        <td><a href="/pages/problems/edit.php?id=<?= $index ?>"><i class="bi bi-pen"></i></a></td>
+        <td class="p-2"><a href="/pages/problems/show.php?id=<?= $index ?>">#<?= $index ?></a></td>
+        <td class="p-2"><?= $problem ?></td>
+        <td class="p-1">
+          <a href="/pages/problems/edit.php?id=<?= $index ?>"><i class="btn btn-outline-primary bi bi-pen border-primary"></i></a>
+
+          <form action="delete.php" method="POST" class="d-inline">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="problem[id]" value="<?= $index ?>">
+            <button type="submit" class="btn btn-outline-danger border-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+        </td>
       </tr>
     <? endforeach; ?>
   </tbody>
