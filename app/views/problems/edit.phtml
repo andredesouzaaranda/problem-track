@@ -1,0 +1,16 @@
+<form action="update.php" method="POST" class="<?= empty($errors) ? '' : 'was-validated' ?>" novalidate>
+  <input type="hidden" name="_method" value="PUT">
+  <input type="hidden" name="problem[id]" value="<?= $problem['id'] ?>">
+  <div class="mb-3">
+    <label for="problem_title" class="form-label">
+      Título do Problema
+    </label>
+    <input type="text" name="problem[title]" id="problem_title" value="<?= $problem['title'] ?>" class="form-control" placeholder="Descreva o título do problema" required>
+    <div class="invalid-feedback">
+      <?= isset($errors['title']) ? $errors['title'] : '' ?>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">
+      Registrar Problema
+    </button>
+  </div>
+</form>
