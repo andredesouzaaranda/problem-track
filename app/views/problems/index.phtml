@@ -15,36 +15,37 @@
   </div>
 </div>
 
-<table class="table">
-  <thead>
-    <th class="p-2">ID</th>
-    <th class="p-2">Título</th>
-    <th class="p-2">Ações</th>
-  </thead>
-
+<?php if (count($problems) < 1): ?>
   <div class="d-flex justify-content-center m-5">
     <div class="col-sm-4 alert alert-info text-center">
       Não foram encontrados registros!
     </div>
   </div>
+<?php else: ?>
+  <table class="table">
+    <thead>
+      <th class="p-2">ID</th>
+      <th class="p-2">Título</th>
+      <th class="p-2">Ações</th>
+    </thead>
+    <tbody>
+      <?php foreach ($problems as $problem): ?>
+        <tr>
+          <td class="p-2"><a href="/pages/problems/show.php?id=<?= $problem->getId() ?>">#<?= $problem->getId() + 1 ?></a></td>
+          <td class="p-2"><?= $problem->getTitle() ?></td>
+          <td class="p-1">
+            <a href="/pages/problems/edit.php?id=<?= $problem->getId() ?>"><i class="btn btn-outline-primary bi bi-pen border-primary"></i></a>
 
-  <tbody>
-    <?php foreach ($problems as $index => $problem): ?>
-      <tr>
-        <td class="p-2"><a href="/pages/problems/show.php?id=<?= $index ?>">#<?= $index ?></a></td>
-        <td class="p-2"><?= $problem ?></td>
-        <td class="p-1">
-          <a href="/pages/problems/edit.php?id=<?= $index ?>"><i class="btn btn-outline-primary bi bi-pen border-primary"></i></a>
-
-          <form action="delete.php" method="POST" class="d-inline">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="problem[id]" value="<?= $index ?>">
-            <button type="submit" class="btn btn-outline-danger border-danger">
-              <i class="bi bi-trash"></i>
-            </button>
-          </form>
-        </td>
-      </tr>
-    <? endforeach; ?>
-  </tbody>
-</table>
+            <form action="delete.php" method="POST" class="d-inline">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="problem[id]" value="<?= $problem->getId() ?>">
+              <button type="submit" class="btn btn-outline-danger border-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+      <? endforeach; ?>
+    </tbody>
+  </table>
+<?php endif; ?>

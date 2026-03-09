@@ -1,5 +1,7 @@
 <?php
 
+require '/var/www/app/models/Problem.php';
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method !== 'POST') {
@@ -7,17 +9,10 @@ if ($method !== 'POST') {
   exit;
 }
 
-$problem = $_POST['problem'];
-$title = trim($problem['title']);
-$errors = [];
+$params = $_POST['problem'] ?? null;
+$problem = new Problem(title: $params['title'] ?? '');
 
-if (empty($title)) {
-  $errors['title'] = 'O título é obrigatório';
-}
-
-if (empty($errors)) {
-  define('DB_PATH', '/var/www/database/problems.txt');
-  file_put_contents(DB_PATH, $title . PHP_EOL, FILE_APPEND);
+if ($problem->save()) {
   header('Location: /pages/problems');
 } else {
   $title = 'Problemas Registrados';

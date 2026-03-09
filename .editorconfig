@@ -10,3 +10,6 @@ trim_trailing_whitespace = true
 
 [*.{html}]
 ident_size = 4
+
+[*.{php}]
+ident_size = 4
