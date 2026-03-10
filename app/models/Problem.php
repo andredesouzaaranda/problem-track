@@ -74,7 +74,7 @@ class Problem
     return empty($this->errors);
   }
 
-  public function errors($index): object|null
+  public function errors($index): string|null
   {
     if (isset($this->errors[$index])) {
       return $this->errors[$index];
