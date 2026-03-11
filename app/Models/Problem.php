@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Problem
 {
   const DB = '/var/www/database/problems.txt';
